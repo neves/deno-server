@@ -8,8 +8,10 @@ let counter = 0
 
 console.log("Listening on http://localhost:8080")
 
-await listenAndServe(":8080", (_req) => {
-  const memory = Object.entries(Deno.memoryUsage()).map(([a, b]) => [a, Math.round(b/1024/1024, 2)])
+await listenAndServe(":8080", (req) => {
+  if (req.url.endsWith("/throw")) throw "error"
+  
+  const memory = Object.entries(Deno.memoryUsage()).map(([a, b]) => [a, Math.round(b/1024, 2)])
   const body = `counter: ${counter++}. boot: ${boot}. Memory: ${memory}`
   
   return new Response(body, {
