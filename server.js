@@ -2,7 +2,7 @@
 // https://blog.r0b.io/post/running-node-js-as-a-systemd-service/
 // deno run -Ar 
 import { listenAndServe } from "https://deno.land/std/http/server.ts"
-const VERSION = 2
+const VERSION = 3
 const boot = new Date().toJSON()
 let counter = 0
 
